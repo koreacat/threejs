@@ -1,11 +1,7 @@
-const { WEBGL } = require("../common/webgl");
-const { Renderer } = require("./component/renderer");
-const { Camera } = require("./component/camera");
-const { Scene } = require("./component/scene");
-const { Light } = require("./component/light");
 const { Cube01 } = require("./component/cube01");
 const { Cone } = require("./component/cone");
 const { addEventResize } = require("../common/utils");
+const THREE = require("three");
 
 const render = (renderer, camera, scene) => {
   const meshes = [
@@ -33,12 +29,19 @@ const render = (renderer, camera, scene) => {
   requestAnimationFrame(renderFrame);
 }
 
-const primitivesMain = () => {
-  if(!WEBGL.isWebGLAvailable()) return;
-  const renderer = new Renderer().renderer;
-  const camera = new Camera().camera;
-  const scene = new Scene().scene;
-  new Light(scene);
+const primitivesMain = (canvas) => {
+  const renderer = new THREE.WebGLRenderer({canvas});
+  renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
+
+  const camera = new THREE.PerspectiveCamera(100, canvas.clientWidth / canvas.clientHeight, 0.1, 10);
+  camera.position.z = 2;
+
+  const scene = new THREE.Scene();
+  scene.background = new THREE.Color(0x222222);
+
+  const light = new THREE.DirectionalLight(0xFFFFFF, 1);
+  light.position.set(-1, 20, 40);
+  scene.add(light);
 
   render(renderer, camera, scene);
   addEventResize(renderer, camera);
