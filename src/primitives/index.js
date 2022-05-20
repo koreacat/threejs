@@ -35,6 +35,8 @@ const primitivesMain = (canvas) => {
 
   const camera = new THREE.PerspectiveCamera(100, canvas.clientWidth / canvas.clientHeight, 0.1, 10);
   camera.position.z = 2;
+  camera.aspect = canvas.clientWidth / canvas.clientHeight;
+  camera.updateProjectionMatrix();
 
   const scene = new THREE.Scene();
   scene.background = new THREE.Color(0x222222);
