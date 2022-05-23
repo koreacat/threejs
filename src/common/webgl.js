@@ -1,7 +1,7 @@
-var WEBGL = {
+const WEBGL = {
   isWebGLAvailable: function () {
     try {
-      var canvas = document.createElement('canvas')
+      const canvas = document.createElement('canvas')
       return !!(
         window.WebGLRenderingContext &&
         (canvas.getContext('webgl') || canvas.getContext('experimental-webgl'))
@@ -13,7 +13,7 @@ var WEBGL = {
 
   isWebGL2Available: function () {
     try {
-      var canvas = document.createElement('canvas')
+      const canvas = document.createElement('canvas')
       return !!(window.WebGL2RenderingContext && canvas.getContext('webgl2'))
     } catch (e) {
       return false
@@ -29,20 +29,20 @@ var WEBGL = {
   },
 
   getErrorMessage: function (version) {
-    var names = {
+    const names = {
       1: 'WebGL',
       2: 'WebGL 2',
     }
 
-    var contexts = {
+    const contexts = {
       1: window.WebGLRenderingContext,
       2: window.WebGL2RenderingContext,
     }
 
-    var message =
+    let message =
       'Your $0 does not seem to support <a href="http://khronos.org/webgl/wiki/Getting_a_WebGL_Implementation" style="color:#000">$1</a>'
 
-    var element = document.createElement('div')
+    const element = document.createElement('div')
     element.id = 'webgl-error-message'
 
     if (contexts[version]) {

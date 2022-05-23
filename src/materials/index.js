@@ -1,7 +1,7 @@
 const THREE = require("three");
-const { resizeRendererToDisplaySize} = require("../common/utils");
-const { Cube01 } = require("../component/cube01");
-const { Cone } = require("../component/cone");
+const {resizeRendererToDisplaySize} = require("../common/utils");
+const {Cube01} = require("../component/cube01");
+const {Cone} = require("../component/cone");
 
 const render = (renderer, camera, scene) => {
   const meshes = [
@@ -33,7 +33,7 @@ const render = (renderer, camera, scene) => {
   requestAnimationFrame(renderFrame);
 }
 
-const primitivesMain = (canvas) => {
+const materialsMain = (canvas) => {
   const renderer = new THREE.WebGLRenderer({canvas});
   renderer.setSize(canvas.clientWidth, canvas.clientHeight, false);
 
@@ -43,7 +43,6 @@ const primitivesMain = (canvas) => {
   camera.updateProjectionMatrix();
 
   const scene = new THREE.Scene();
-  scene.background = new THREE.Color(0x222222);
 
   const light = new THREE.DirectionalLight(0xFFFFFF, 1);
   light.position.set(-1, 20, 40);
@@ -52,4 +51,4 @@ const primitivesMain = (canvas) => {
   render(renderer, camera, scene);
 }
 
-module.exports = { primitivesMain };
+module.exports = { materialsMain };

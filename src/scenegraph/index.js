@@ -1,5 +1,5 @@
-const { resizeRendererToDisplaySize, makeAxisGrid } = require("../common/utils");
 const THREE = require("three");
+const { resizeRendererToDisplaySize, makeAxisGrid } = require("../common/utils");
 
 const render = (renderer, camera, scene) => {
   const objects = [];
@@ -83,7 +83,6 @@ const scenegraphMain = (canvas) => {
   camera.updateProjectionMatrix();
 
   const scene = new THREE.Scene();
-  // scene.background = new THREE.Color(0x222222);
 
   const light = new THREE.PointLight(0xFFFFFF, 3);
   scene.add(light);
